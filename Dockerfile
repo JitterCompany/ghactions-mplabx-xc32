@@ -3,6 +3,8 @@ FROM ubuntu:bionic
 
 ENV XC32VER v2.41
 ENV MPLABXVER v6.00
+ENV DFP PIC32MX_DFP
+ENV DFP_VER 1.6.369
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends apt-utils && \
@@ -18,21 +20,12 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
   && tar xf MPLABX-${MPLABXVER}-linux-installer.tar && rm -f MPLABX-${MPLABXVER}-linux-installer.tar \
   && USER=root ./*-installer.sh --nox11 \
   -- --unattendedmodeui none --mode unattended \
-  && rm -f MPLABX-${MPLABXVER}-linux-installer.sh && \
-#Remove Packs that are not relevant to current changes
-  #cd /opt/microchip/mplabx/v5.40/ && \
-  #rm -r docs && \
-  #rm Uninstall_MPLAB_X_IDE_v5.40 && \
-  #rm Uninstall_MPLAB_X_IDE_v5.40.desktop && \
-  #rm Uninstall_MPLAB_X_IDE_v5.dat && \
-  #cd mplab_platform && rm  -r mplab_ipe && \
-  #cd ../packs && rm -r arm && \
-  #mv Microchip/PIC32MX_DFP/ mx_tmp  && \
-  #mv Microchip/PIC32MZ-EF_DFP/ mz_tmp && \
-  #rm -r Microchip && \
-  #mkdir Microchip && \
-  #mv mx_tmp Microchip/PIC32MX_DFP/  && \
-  #mv mz_tmp Microchip/PIC32MZ-EF_DFP/ 
+  && rm -f MPLABX-${MPLABXVER}-linux-installer.sh
+
+# Download DFP
+RUN wget https://packs.download.microchip.com/Microchip.${DFP}.${DFP_VER}.atpack \
+  && USER=root unzip Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/v6.00/packs/Microchip/${DFP}/${DFP_VER}
+  && ls /opt/microchip/mplabx/v6.00/mplab_platform/bin/
 
 # Install XC32 ${XC32VER}
 RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/xc32-${XC32VER}-full-install-linux-installer.run -q --show-progress --progress=bar:force:noscroll -O xc32-${XC32VER}-full-install-linux-installer.run\
