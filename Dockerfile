@@ -34,7 +34,8 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
 
 # Download the exact DFP we want
 RUN wget https://packs.download.microchip.com/Microchip.${DFP}.${DFP_VER}.atpack \
-  && USER=root unzip -o Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/v6.00/packs/Microchip/${DFP}/${DFP_VER} \
+  && mkdir -p /opt/microchip/mplabx/${MPLABXVER}/packs/Microchip/${DFP}/ \
+  && USER=root unzip -o Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/${MPLABXVER}/packs/Microchip/${DFP}/${DFP_VER} \
   && rm Microchip.${DFP}.${DFP_VER}.atpack
 
 # Install XC32 ${XC32VER}
