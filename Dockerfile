@@ -22,10 +22,10 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
   -- --unattendedmodeui none --mode unattended \
   && rm -f MPLABX-${MPLABXVER}-linux-installer.sh && \
   #Remove Packs that are not relevant to current changes
-  cd /opt/microchip/mplabx/v5.40/ && \
+  cd /opt/microchip/mplabx/${MPLABXVER}/ && \
   rm -rf docs && \
-  rm Uninstall_MPLAB_X_IDE_v5.40 && \
-  rm Uninstall_MPLAB_X_IDE_v5.40.desktop && \
+  rm Uninstall_MPLAB_X_IDE_${MPLABXVER} && \
+  rm Uninstall_MPLAB_X_IDE_${MPLABXVER}.desktop && \
   rm Uninstall_MPLAB_X_IDE_v5.dat && \
   cd mplab_platform && rm  -rf mplab_ipe && \
   cd ../packs && rm -rf arm && \
