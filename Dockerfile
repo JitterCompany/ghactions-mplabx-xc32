@@ -26,7 +26,7 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
   rm -rf docs && \
   rm Uninstall_MPLAB_X_IDE_${MPLABXVER} && \
   rm Uninstall_MPLAB_X_IDE_${MPLABXVER}.desktop && \
-  rm Uninstall_MPLAB_X_IDE_v5.dat && \
+  rm -f Uninstall_MPLAB_X_IDE_*.dat && \
   cd mplab_platform && rm  -rf mplab_ipe && \
   cd ../packs && rm -rf arm && \
   rm -rf Microchip && \
