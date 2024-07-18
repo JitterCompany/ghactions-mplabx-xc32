@@ -4,7 +4,7 @@ FROM ubuntu:bionic
 ENV XC32VER v2.41
 ENV MPLABXVER v6.00
 ENV DFP PIC32MX_DFP
-ENV DFP_VER 1.6.369
+ENV DFP_VER 1.5.259
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends apt-utils && \
