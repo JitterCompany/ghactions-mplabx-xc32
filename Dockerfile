@@ -1,4 +1,4 @@
-FROM ubuntu:bionic 
+FROM ubuntu:bionic
 #Latest ubuntu with i386 supported
 
 ENV XC32VER v2.41
@@ -20,7 +20,7 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
   && tar xf MPLABX-${MPLABXVER}-linux-installer.tar && rm -f MPLABX-${MPLABXVER}-linux-installer.tar \
   && USER=root ./*-installer.sh --nox11 \
   -- --unattendedmodeui none --mode unattended \
-  && rm -f MPLABX-${MPLABXVER}-linux-installer.sh \
+  && rm -f MPLABX-${MPLABXVER}-linux-installer.sh && \
   #Remove Packs that are not relevant to current changes
   cd /opt/microchip/mplabx/v5.40/ && \
   rm -rf docs && \
@@ -36,7 +36,7 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
 RUN wget https://packs.download.microchip.com/Microchip.${DFP}.${DFP_VER}.atpack \
   && USER=root unzip -o Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/v6.00/packs/Microchip/${DFP}/${DFP_VER} \
   && rm Microchip.${DFP}.${DFP_VER}.atpack
-  
+
 # Install XC32 ${XC32VER}
 RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/xc32-${XC32VER}-full-install-linux-installer.run -q --show-progress --progress=bar:force:noscroll -O xc32-${XC32VER}-full-install-linux-installer.run\
   && chmod a+x xc32-${XC32VER}-full-install-linux-installer.run \
@@ -51,7 +51,7 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/xc32-${XC32VER}-full-i
   rm pic32Plib
 
 ENV PATH $PATH:/opt/microchip/xc32/${XC32VER}/bin
-ENV PATH $PATH:/opt/microchip/mplabx/${MPLABXVER}/mplab_platform/bin  
+ENV PATH $PATH:/opt/microchip/mplabx/${MPLABXVER}/mplab_platform/bin
 
 COPY build.sh /build.sh
 
