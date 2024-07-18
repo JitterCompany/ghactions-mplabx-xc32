@@ -2,10 +2,11 @@
 
 This action will build a MPLAB X project.
 
-It runs on Linux Ubuntu 18.04 and uses:
+It runs on Linux (Ubuntu 18.04) and uses:
 
 - MPLAB 6.00
 - xc32 v2.41
+- PIC32MX_DFP version 1.5.259
 - Peripheral libraries for PIC32
 
 ## Inputs
@@ -38,11 +39,11 @@ jobs:
       - name: Download source
         uses: actions/checkout@v1
 
-      - name: Build library
-        uses: AgricoZa/ghactions-mplabx@master
+      - name: Build Firmware
+        uses: JitterCompany/ghactions-mplabx-xc32@master
         with:
-          project: firmware.X
-          configuration: default
+          project: relative-path-to-firmware-folder
+          configuration: Debug
 ```
 
 Thanks to
