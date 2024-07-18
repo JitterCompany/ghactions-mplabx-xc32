@@ -1,4 +1,4 @@
-name: "MplabX XC32 v2.41 with legacy plib "
+name: "MplabX v6.00 XC32 v2.41 with legacy plib "
 description: "This action builds an MPLABX/xc32 with legacy libraries project in a Linux container."
 branding:
   icon: package
@@ -15,7 +15,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: "docker://ghcr.io/agricoza/ghactions-mplabx-xc32-plib:latest"
+  image: "docker://ghcr.io/jittercompany/ghactions-mplabx-xc32-plib:latest"
   args:
     - ${{ inputs.project }}
     - ${{ inputs.configuration }}
