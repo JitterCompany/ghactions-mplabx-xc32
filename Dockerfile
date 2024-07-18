@@ -15,7 +15,7 @@ RUN apt-get update && \
   libxext6 libxrender1 libxtst6 libgtk2.0-0 make \
   && rm -rf /var/lib/apt/lists/*
 
-# Install MPLAB ${MPLABXVER}
+# Install MPLAB ${MPLABXVER}, discarding all device support packs
 RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-linux-installer.tar -q --show-progress --progress=bar:force:noscroll -O MPLABX-${MPLABXVER}-linux-installer.tar \
   && tar xf MPLABX-${MPLABXVER}-linux-installer.tar && rm -f MPLABX-${MPLABXVER}-linux-installer.tar \
   && USER=root ./*-installer.sh --nox11 \
@@ -23,20 +23,16 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
   && rm -f MPLABX-${MPLABXVER}-linux-installer.sh \
   #Remove Packs that are not relevant to current changes
   cd /opt/microchip/mplabx/v5.40/ && \
-  rm -r docs && \
+  rm -rf docs && \
   rm Uninstall_MPLAB_X_IDE_v5.40 && \
   rm Uninstall_MPLAB_X_IDE_v5.40.desktop && \
   rm Uninstall_MPLAB_X_IDE_v5.dat && \
-  cd mplab_platform && rm  -r mplab_ipe && \
-  cd ../packs && rm -r arm && \
-  mv Microchip/PIC32MX_DFP/ mx_tmp  && \
-  mv Microchip/PIC32MZ-EF_DFP/ mz_tmp && \
-  rm -r Microchip && \
-  mkdir Microchip && \
-  mv mx_tmp Microchip/PIC32MX_DFP/  && \
-  mv mz_tmp Microchip/PIC32MZ-EF_DFP/ 
+  cd mplab_platform && rm  -rf mplab_ipe && \
+  cd ../packs && rm -rf arm && \
+  rm -rf Microchip && \
+  mkdir Microchip
 
-# Download DFP
+# Download the exact DFP we want
 RUN wget https://packs.download.microchip.com/Microchip.${DFP}.${DFP_VER}.atpack \
   && USER=root unzip -o Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/v6.00/packs/Microchip/${DFP}/${DFP_VER} \
   && rm Microchip.${DFP}.${DFP_VER}.atpack
