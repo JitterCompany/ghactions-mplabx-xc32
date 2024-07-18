@@ -24,7 +24,7 @@ RUN wget https://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-${MPLABXVER}-li
 
 # Download DFP
 RUN wget https://packs.download.microchip.com/Microchip.${DFP}.${DFP_VER}.atpack \
-  && USER=root unzip Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/v6.00/packs/Microchip/${DFP}/${DFP_VER}
+  && USER=root unzip Microchip.${DFP}.${DFP_VER}.atpack -d /opt/microchip/mplabx/v6.00/packs/Microchip/${DFP}/${DFP_VER} \
   && ls /opt/microchip/mplabx/v6.00/mplab_platform/bin/
 
 # Install XC32 ${XC32VER}
