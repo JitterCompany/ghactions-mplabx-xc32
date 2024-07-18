@@ -35,7 +35,7 @@ jobs:
           context: .
           pull: true
           push: true
-          cache-from: type=registry,ref=ghcr.io/agricoza/ghactions-mplabx-xc32-plib:latest
+          cache-from: type=registry,ref=ghcr.io/jittercompany/ghactions-mplabx-xc32-plib:latest
           cache-to: type=inline
-          tags: ghcr.io/agricoza/ghactions-mplabx-xc32-plib:latest
+          tags: ghcr.io/jittercompany/ghactions-mplabx-xc32-plib:latest
  
