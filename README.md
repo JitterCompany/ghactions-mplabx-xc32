@@ -4,8 +4,7 @@ This action will build a MPLAB X project.
 
 It runs on Linux Ubuntu 18.04 and uses:
 
-- MPLAB 5.40
-  - Removed Packs not targeting PIC32MX/MZ to reduce image size
+- MPLAB 6.00
 - xc32 v2.41
 - Peripheral libraries for PIC32
 
